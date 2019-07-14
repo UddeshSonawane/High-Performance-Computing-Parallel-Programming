@@ -2,7 +2,9 @@
 
 Uddesh Shankar Sonawane
 Date: 29th June, 2019
-HPC: Practicle 2 : Perform Bubble Sort and Merge Sort using parallel computing
+HPC: Practicle 2 : Parallel Sorting Algorithms-
+			For Bubble Sort and Merger Sort, based on existing sequential algorithms, design and
+			implement parallel algorithm utilizing all resources available.
 
 */
 
