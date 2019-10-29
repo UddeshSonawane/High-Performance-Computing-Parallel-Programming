@@ -16,11 +16,15 @@ Problem statement: Parallel Search Algorithm-
 
 
 #include<iostream>
+#include<omp.h>
+#include<ctime>
 using namespace std;
 
 //------------------------  BINARY SEARCH -------------------------
 int checkbinary_search(int arr[], int start, int end, int search)    
 {
+   #pragma imp section
+   {
 	if(end>=start)
 	{
 		int mid = start + (end - start) / 2;
@@ -31,6 +35,7 @@ int checkbinary_search(int arr[], int start, int end, int search)
             	return checkbinary_search(arr, mid + 1, end, search); 
             	cout<<"\n**";
 	}
+     }
 	return -1;  // terminating condition. If element is not present in array then only we reach here
 }
 //-----------------------------------------------------------BINARY SEARCH END
@@ -127,6 +132,8 @@ void search_element(int element_to_search, node* treeroot)
 	int i=0;
 	while(1)
 	{
+            #pragma imp section
+            {
 		if(root->data==element_to_search)
 		{
 			cout<<"\nelement '"<<element_to_search<<"' found after "<<i+1<<" searches";
@@ -136,7 +143,7 @@ void search_element(int element_to_search, node* treeroot)
 			root=root->left;
 		else
 			root=root->right;		
-
+             }
 		i++;
 	}
 }
@@ -146,6 +153,9 @@ void search_element(int element_to_search, node* treeroot)
 	
 int main()
 {
+        clock_t start, end;
+        start=clock();
+
 	cout<<"\nSelect appropriate option :\n\t1] Binary search on sorted array\n\t2] Create and perform search on binary tree\n\t -> press any key to exit\n";
 	int choice;
 	cin>>choice;
@@ -197,6 +207,11 @@ int main()
 	}
 	
 	cout<<"\n\nHave a nice day :)\n\n";
+        
+        end= clock();
+        double time_used;
+        time_used=((double)(end-start))/CLOCKS_PER_SECOND;
+
 return 0;
 }
 
